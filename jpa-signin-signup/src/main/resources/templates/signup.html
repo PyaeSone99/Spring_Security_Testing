@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html th:replace="layout/masterLayout :: layout(~{::main})" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+    <div class="container">
+        <form th:action="@{/register}" th:object="${user}" method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter Name" th:field="*{username}">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="text" class="form-control" id="password" th:field="*{password}">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="name@example.com" th:field="*{email}">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-outline-primary mb-3">Register</button>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

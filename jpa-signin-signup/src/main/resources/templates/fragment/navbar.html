@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<body>
+<nav th:fragment="navbar" class="navbar navbar-expand-md" style="background-color: #AAAABC;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">HOME</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/products}">Products</a>
+        </li>
+      </ul>
+      <div class="" sec:authorize="!isAuthenticated()">
+        <a th:href="@{/sign-up}" class="btn-link me-3 text-decoration-none text-primary">Sign Up</a>
+        <a th:href="@{/login}" class="btn-link text-decoration-none text-success">Login</a>
+      </div>
+      <div sec:authorize="isAuthenticated()">
+        <a href="javascript: document.logoutForm.submit()">LogOut</a>
+        <form th:action="@{/logout}" method="post" th:hidden="true" name="logoutForm">
+          <button class="btn btn-outline-success me-2" type="submit" hidden >Sign Out</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</nav>
+</body>
+</html>

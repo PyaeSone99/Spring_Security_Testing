@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html th:fragment="layout(main)" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.min.css" th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<style>
+    body{
+        background-color: lavender;
+        font-family: 'Bai Jamjuree', sans-serif;
+        min-height: 100vh!important;
+
+    }
+
+    /*footer{*/
+    /*    position: fixed;*/
+    /*    bottom: 0;*/
+    /*    width: 100%;*/
+    /*}*/
+</style>
+<body>
+    <div class="" th:replace="fragment/navbar.html :: navbar"></div>
+    <div class="" th:replace="${main}"></div>
+</body>
+</html>
