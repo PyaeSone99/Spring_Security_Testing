@@ -4,14 +4,27 @@
 <body>
 <main role="main">
     <div class="container">
+        <div class="my-2">
+            <a href="#" th:href="@{'/sign-up?lang=us'}">Us</a> |
+            <a href="#" th:href="@{'/sign-up?lang=ja'}">Japan</a> |
+            <a href="#" th:href="@{'/sign-up?lang=fr'}">French</a> |
+            <a href="#" th:href="@{'/sign-up?lang=de'}">German</a> |
+        </div>
         <form th:action="@{/register}" th:object="${user}" method="post">
             <div class="mb-3">
-                <label for="username" class="form-label">User Name</label>
-                <input type="text" class="form-control" id="username" placeholder="Enter Name" th:field="*{username}">
+                <label for="username" class="form-label" th:text="#{user.name}"></label>
+                <input type="text" class="form-control" id="username" placeholder="Enter Name" th:field="*{username}" th:classappend="${#fields.hasErrors('username')}? 'is-invalid'">
+                <small th:if="${#fields.hasErrors('username')}" class="invalid-feedback" th:errors="*{username}"></small>
+
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="text" class="form-control" id="password" th:field="*{password}">
+                <input type="text" class="form-control" id="password" th:field="*{password}" th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'">
+                <small th:if="${#fields.hasErrors('password')}" class="invalid-feedback" th:errors="*{password}"></small>
+            </div>
+            <div class="mb-3">
+                <label for="repeatedPassword" class="form-label">Repeated Password</label>
+                <input type="text" class="form-control" id="repeatedPassword" th:field="*{repeatedPassword}">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>

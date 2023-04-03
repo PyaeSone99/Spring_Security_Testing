@@ -2,11 +2,15 @@ package com.example.jpasigninsignup.controller;
 
 import com.example.jpasigninsignup.entity.User;
 import com.example.jpasigninsignup.service.UserService;
+import com.example.jpasigninsignup.validation.UserValidator;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.DataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -33,7 +37,7 @@ public class HomeController {
     }
 
     @PostMapping("/register")
-    public String register(User user, BindingResult result){
+    public String register(@Valid User user, BindingResult result){
         if (result.hasErrors()){
             return "signup";
         }
@@ -54,5 +58,10 @@ public class HomeController {
         List<String> fruits = List.of("Apple","Mango","Banana");
         model.addAttribute("fruits",fruits);
         return "products";
+    }
+//    -----------------------------------validation
+    @InitBinder
+    public void initBinder(DataBinder dataBinder){
+        dataBinder.addValidators(new UserValidator());
     }
 }
