@@ -4,9 +4,10 @@ import jakarta.servlet.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.web.csrf.CsrfToken;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-
+@Component
 public class CsrfTokenLogger implements Filter {
 
     private Logger logger = LoggerFactory.getLogger(CsrfTokenLogger.class.getName());

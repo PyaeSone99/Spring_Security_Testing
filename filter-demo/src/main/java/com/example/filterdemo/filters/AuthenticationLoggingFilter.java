@@ -18,6 +18,7 @@ public class AuthenticationLoggingFilter extends OncePerRequestFilter{    //    
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         var key = request.getHeader("x-api-key");
+//        var key = request.getHeader("Authorization");
         logger.info("Successfully Authenticated request with id "+ key);
         filterChain.doFilter(request,response);
     }

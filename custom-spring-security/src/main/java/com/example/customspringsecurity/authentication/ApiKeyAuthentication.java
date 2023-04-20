@@ -59,3 +59,4 @@ public class ApiKeyAuthentication implements Authentication {
         return Authentication.super.implies(subject);
     }
 }
+

@@ -12,14 +12,14 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 @Configuration
 public class SecurityConfig {
-    @Autowired
-    private StaticKeyAuthenticationFilter staticKeyAuthenticationFilter;
+//    @Autowired
+//    private StaticKeyAuthenticationFilter staticKeyAuthenticationFilter;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception{
 
         http.httpBasic().and()
-                .addFilterBefore(new CustomValidationFilter(), BasicAuthenticationFilter.class)
-                .addFilterAfter(new AuthenticationLoggingFilter(),BasicAuthenticationFilter.class)
+                .addFilterAt(new CustomValidationFilter(), BasicAuthenticationFilter.class)
+                .addFilterAfter(new AuthenticationLoggingFilter(),CustomValidationFilter.class)
 //                .addFilterAt(staticKeyAuthenticationFilter,BasicAuthenticationFilter.class)
 //                .addFilterAfter(new AuthenticationLoggingFilter(),StaticKeyAuthenticationFilter.class)
                 .authorizeHttpRequests()
